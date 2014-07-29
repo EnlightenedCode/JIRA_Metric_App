@@ -1,0 +1,7 @@
+Express server listening on port \\.\pipe\eada331f-1d31-41fe-8c30-a538e3520fe0
+[90mGET / [32m200 [90m47ms - 163[0m
+[90mGET / [32m200 [90m3ms - 1.39kb[0m
+[90mGET /demo.html [33m404 [90m18ms[0m
+[90mGET / [36m304 [90m1ms[0m
+[90mGET / [32m200 [90m2ms - 1.39kb[0m
+[90mGET /bugsFound.json [33m404 [90m1ms[0m

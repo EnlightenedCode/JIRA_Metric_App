@@ -1,0 +1,16 @@
+Error: C:\Users\Exodus\Documents\My Web Sites\JIRAMetrics\views\index.jade:2
+    1| 
+  > 2|   include main.html
+    3| 
+
+unexpected token "indent"
+    at Object.Parser.parseExpr (C:\Users\Exodus\Documents\My Web Sites\JIRAMetrics\node_modules\jade\lib\parser.js:241:15)
+    at Object.Parser.parse (C:\Users\Exodus\Documents\My Web Sites\JIRAMetrics\node_modules\jade\lib\parser.js:134:25)
+    at parse (C:\Users\Exodus\Documents\My Web Sites\JIRAMetrics\node_modules\jade\lib\jade.js:100:62)
+    at Object.exports.compile (C:\Users\Exodus\Documents\My Web Sites\JIRAMetrics\node_modules\jade\lib\jade.js:163:9)
+    at Object.exports.render (C:\Users\Exodus\Documents\My Web Sites\JIRAMetrics\node_modules\jade\lib\jade.js:215:17)
+    at View.exports.renderFile [as engine] (C:\Users\Exodus\Documents\My Web Sites\JIRAMetrics\node_modules\jade\lib\jade.js:243:13)
+    at View.render (C:\Users\Exodus\Documents\My Web Sites\JIRAMetrics\node_modules\express\lib\view.js:75:8)
+    at Function.app.render (C:\Users\Exodus\Documents\My Web Sites\JIRAMetrics\node_modules\express\lib\application.js:504:10)
+    at ServerResponse.res.render (C:\Users\Exodus\Documents\My Web Sites\JIRAMetrics\node_modules\express\lib\response.js:753:7)
+    at exports.index (C:\Users\Exodus\Documents\My Web Sites\JIRAMetrics\routes\index.js:7:7)
