@@ -17,17 +17,19 @@
                 <th>*Extra Hrs</th>
                 <th>*QA Score</th>
                 <th># of Days</th>
+                <th></th>
             </tr>
             </thead>
             <tfoot>
                 <tr ng-model="averages">
                     <td>Avg</td>
-                    <td> {{ averages.bugsFound }}</td>
-                    <td> {{ averages.reopens }}</td>
-                    <td> {{ averages.features }}</td>
-                    <td> {{ averages.extraHrs}}</td>
+                    <td> {{ averages.bugsFound | number: 0 }}</td>
+                    <td> {{ averages.reopens | number: 0 }}</td>
+                    <td> {{ averages.features | number: 0 }}</td>
+                    <td> {{ averages.extraHrs | number: 0}}</td>
                     <td> {{ averages.qaScore | number:2 }}</td>
-                    <td> {{ averages.days }}</td>
+                    <td> {{ averages.days | number: 0 }}</td>
+                    <td></td>
                 </tr>
             </tfoot>
             <tr ng-repeat="iteration in iterations">
@@ -38,6 +40,7 @@
                 <td>{{ iteration.extraHrs }}</td>
                 <td>{{ iteration.qaScore | number:2 }}</td>
                 <td>{{ iteration.days }}</td>
+                <td><button ng-click="deleteIteration($index)"><i class="glyphicon glyphicon-trash"></i></button></td>
             </tr>
         </table>
     </div>

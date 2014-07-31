@@ -62,7 +62,8 @@
 
       $scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
       $scope.format = $scope.formats[0];      
-      
+
+
 
       var bugsComplete = function(data){
         //$log.info("Getting data: " + data.length);
@@ -126,6 +127,25 @@
       $scope.addIteration = function(){
         iterationCount += 1;
         jiraDemo.getBugsFound($scope.iteration.startDate, $scope.iteration.endDate).then(bugsComplete, onError);
+      };
+
+      $scope.deleteIteration = function ( idx) {
+          iterationCount -= 1;
+
+          bugsFoundSum -= $scope.iterations[idx].bugs;
+          reopensSum -= $scope.iterations[idx].reopens;
+          featuresSum -= $scope.iterations[idx].features;
+          extraHrsSum -= $scope.iterations[idx].extraHrs;
+          qaScoreSum -= $scope.iterations[idx].qaScore;
+          daysSum -= $scope.iterations[idx].days;
+
+          $scope.averages.bugsFound = bugsFoundSum / iterationCount;
+          $scope.averages.reopens = reopensSum / iterationCount;
+          $scope.averages.features = featuresSum / iterationCount;
+          $scope.averages.extraHrs = extraHrsSum / iterationCount;
+          $scope.averages.qaScore = qaScoreSum / iterationCount;
+          $scope.averages.days = daysSum / iterationCount;
+          $scope.iterations.splice(idx, 1);
       };
 
     };
