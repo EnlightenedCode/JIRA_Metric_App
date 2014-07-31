@@ -6,28 +6,39 @@
   
 
   <div class="panel panel-default">
-    <div class="panel-heading">Metric Table</div>
+    <div class="panel-heading">DEMO Metric Table</div>
     <table class="table">
       <thead>
         <tr>
-          <th>Iteration #</th>
-          <th>Bugs Found</th>
-          <th># of Reopens</th>
-          <th># of Features</th>
-          <th>*Extra Hrs</th>
-          <th>*QA Score</th>
-          <th># of Days</th>
+            <th>Iteration #</th>
+            <th>Bugs Found</th>
+            <th># of Reopens</th>
+            <th># of Features</th>
+            <th>*Extra Hrs</th>
+            <th>*QA Score</th>
+            <th># of Days</th>
         </tr>
       </thead>
-      <tr ng-repeat="iteration in iterations">
-        <td>{{ iteration.iterationId }}</td>
-        <td>{{ iteration.bugs }}</td>
-        <td>{{ iteration.reopens }}</td>
-        <td>{{ iteration.features }}</td>
-        <td>{{ iteration.extraHrs }}</td>
-        <td>{{ iteration.qaScore | number:2 }}</td>
-        <td>{{ iteration.days }}</td>
-      </tr>
+    <tfoot>
+        <tr ng-model="averages">
+            <td>Avg</td>
+            <td> {{ averages.bugsFound }}</td>
+            <td> {{ averages.reopens }}</td>
+            <td> {{ averages.features }}</td>
+            <td> {{ averages.extraHrs}}</td>
+            <td> {{ averages.qaScore | number:2 }}</td>
+            <td> {{ averages.days }}</td>
+        </tr>
+    </tfoot>
+        <tr ng-repeat="iteration in iterations">
+            <td>{{ iteration.iterationId }}</td>
+            <td>{{ iteration.bugs }}</td>
+            <td>{{ iteration.reopens }}</td>
+            <td>{{ iteration.features }}</td>
+            <td>{{ iteration.extraHrs }}</td>
+            <td>{{ iteration.qaScore | number:2 }}</td>
+            <td>{{ iteration.days }}</td>
+        </tr>
     </table>
   </div>
   <div class="panel panel-default" id="panel1">
@@ -80,7 +91,5 @@
       </div>
     </div>
   </div>
-  <div ng-controller="MainController">
-  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
-  </div>
+
 </section>

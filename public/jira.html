@@ -1,0 +1,107 @@
+<section id="jira">
+
+    <div style="height: 50px">
+        {{ message }}
+    </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">JIRA Metric Table</div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Iteration #</th>
+                <th>Bugs Found</th>
+                <th># of Reopens</th>
+                <th># of Features</th>
+                <th>*Extra Hrs</th>
+                <th>*QA Score</th>
+                <th># of Days</th>
+            </tr>
+            </thead>
+            <tfoot>
+                <tr ng-model="averages">
+                    <td>Avg</td>
+                    <td> {{ averages.bugsFound }}</td>
+                    <td> {{ averages.reopens }}</td>
+                    <td> {{ averages.features }}</td>
+                    <td> {{ averages.extraHrs}}</td>
+                    <td> {{ averages.qaScore | number:2 }}</td>
+                    <td> {{ averages.days }}</td>
+                </tr>
+            </tfoot>
+            <tr ng-repeat="iteration in iterations">
+                <td>{{ iteration.iterationId }}</td>
+                <td>{{ iteration.bugs }}</td>
+                <td>{{ iteration.reopens }}</td>
+                <td>{{ iteration.features }}</td>
+                <td>{{ iteration.extraHrs }}</td>
+                <td>{{ iteration.qaScore | number:2 }}</td>
+                <td>{{ iteration.days }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel panel-default" id="panel1">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-target="#collapseOne"
+                   href="">
+                    Add an Iteration
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <form name="iterationForm" ng-submit="addIteration()">
+                    <div class="row">
+                        <div class="col-sm-3" style="padding-bottom: 20px">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                  <div style="width:65px">
+                                      Project ID
+                                  </div>
+                                </span>
+                                <input type="text" name="projectId" class="form-control"  ng-model="iteration.projectId" ng-required="true"/>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                        <div class="col-sm-3" style="padding-bottom: 20px">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                  <div style="width:65px">
+                                      Start Date
+                                  </div>
+                                </span>
+                                <input type="text" name="startD" class="form-control" datepicker-popup="{{format}}" ng-model="iteration.startDate" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+                                  <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                        <div class="col-sm-3" style="padding-bottom: 20px">
+                            <div class="input-group">
+                <span class="input-group-addon">
+                  <div style="width:65px">
+                      End Date
+                  </div>
+                </span>
+
+                                <input type="text" class="form-control" name="endD" datepicker-popup="{{format}}" ng-model="iteration.endDate" is-open="opened2" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-default" ng-model="dateSubmit" ng-click="open2($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                        <div class="col-sm-3" style="padding-bottom: 20px">
+                            <button class="btn" style="width: 120px;">
+                                Submit
+                            </button><!-- /input-group -->
+                        </div>
+                    </div><!-- /.row -->
+                </form>
+            </div>
+        </div>
+    </div>
+    <div ng-controller="JiraController">
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
+</section>

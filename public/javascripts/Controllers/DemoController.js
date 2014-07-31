@@ -1,8 +1,39 @@
 (function(){
   var app = angular.module("JIRAVisual");
   
-  var MainController = function(
+  var DemoController = function(
     $scope, jiraDemo,  $http , $log, $q, $timeout) {
+
+
+      $scope.iterations = [];
+      $scope.averages = {
+          bugsFound: 0,
+          reopens: 0,
+          features: 0,
+          extraHrs: 0,
+          qaScore: 0,
+          days: 0
+      };
+      var iterationCount = 0;
+      var iterationToAdd = {
+          iterationId: 0,
+          startDate: undefined,
+          endDate: undefined,
+          bugs: 0,
+          reopens: 0,
+          features: 0,
+          extraHrs: 0,
+          qaScore: 0,
+          days: 0
+      };
+      var bugsFoundSum = 0;
+      var reopensSum = 0;
+      var featuresSum = 0;
+      var extraHrsSum = 0;
+      var qaScoreSum = 0;
+      var daysSum = 0;
+
+
       $scope.today = function() {
         $scope.dt = new Date();
       };
@@ -28,28 +59,11 @@
         formatYear: 'yy',
         startingDay: 1
       };
-      
-      //$scope.alerts.push({msg: "BLAHHHH"});
+
       $scope.formats = ['yyyy-MM-dd', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
       $scope.format = $scope.formats[0];      
       
-      
-      
-      $scope.iterations = [];
-      var iterationCount = 0;
-      var iterationToAdd = {
-        iterationId: 0,
-        startDate: undefined,
-        endDate: undefined,
-        bugs: 0,
-        reopens: 0,
-        features: 0,
-        extraHrs: 0,
-        qaScore: 0,
-        days: 0
-      };
-      
-      
+
       var bugsComplete = function(data){
         //$log.info("Getting data: " + data.length);
         iterationToAdd.bugs = data.length;
@@ -68,6 +82,23 @@
         iterationToAdd.features = data[0].total;
         iterationToAdd.qaScore = jiraDemo.getQAScore();
         iterationToAdd.days = jiraDemo.workingDaysBetweenDates(new Date($scope.iteration.startDate),new Date($scope.iteration.endDate));
+
+
+        bugsFoundSum += iterationToAdd.bugs;
+        reopensSum += iterationToAdd.reopens;
+        featuresSum += iterationToAdd.features;
+        extraHrsSum += iterationToAdd.extraHrs;
+        qaScoreSum += iterationToAdd.qaScore;
+        daysSum += iterationToAdd.days;
+
+        $scope.averages.bugsFound = bugsFoundSum / iterationCount;
+        $scope.averages.reopens = reopensSum / iterationCount;
+        $scope.averages.features = featuresSum / iterationCount;
+        $scope.averages.extraHrs = extraHrsSum / iterationCount;
+        $scope.averages.qaScore = qaScoreSum / iterationCount;
+        $scope.averages.days = daysSum / iterationCount;
+
+
         $scope.iterations.push({
           iterationId: iterationCount,
           startDate: $scope.iteration.startDate,
@@ -85,8 +116,7 @@
         console.log('ERROR', reason);
         $scope.alerts = [];
         $scope.alerts.push({msg: reason});
-        //$scope.error = "Could not fetch the data.";
-      }
+      };
       
       $scope.closeAlert = function(index) {
         $scope.alerts.splice(index, 1);
@@ -97,11 +127,10 @@
         iterationCount += 1;
         jiraDemo.getBugsFound($scope.iteration.startDate, $scope.iteration.endDate).then(bugsComplete, onError);
       };
-      
-      $scope.message = "Hello from Angular";
+
     };
     
 
   
-  app.controller("MainController", ["$scope","jiraDemo", "$http", "$log","$q", "$timeout", MainController]);
+  app.controller("DemoController", ["$scope","jiraDemo", "$http", "$log","$q", "$timeout", DemoController]);
 }());
