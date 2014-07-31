@@ -18,13 +18,10 @@ passport.use(new LocalStrategy({
         passReqToCallback: true
     },
     function (req, username, password, done) {
-        if (username === "aalanis" && password === "silence eagles gold") // stupid example
-        {
-            jira = new JiraApi('https', req.body.domain, "443", username, password, '2', true);
-            return done(null, {name: "admin"});
-        }
 
-        return done(null, false, { message: 'Incorrect username.' });
+        jira = new JiraApi('https', req.body.domain, "443", username, password, '2', true);
+        return done(null, {name: "admin"});
+
     }
 ));
 
