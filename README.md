@@ -5,4 +5,12 @@ This app is created for the sole purpose of consuming the JIRA API using the API
 
 This app uses angularJS to make the Single Page application.  It is also hosted on a node.js server.
 
+In order to run clone this repo and install node.js (http://nodejs.org/)
+
+once node is installed go to cmd prompt and go to the directory of the repo with server.js in it and type "node server.js"
+
+you should be able to bring up the app on localhost:3000 in your browser once this is done.
+
+
+
 * Author: Andrew Alanis 07/22/2014
