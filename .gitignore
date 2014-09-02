@@ -213,3 +213,14 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+.idea/.name
+.idea/deployment.xml
+.idea/encodings.xml
+.idea/JIRA_Metric_App.iml
+.idea/jsLibraryMappings.xml
+.idea/libraries/JIRA_Metric_App_node_modules.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/scopes/scope_settings.xml
+.idea/vcs.xml
+.idea/workspace.xml
